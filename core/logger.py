@@ -278,7 +278,7 @@ def postprocess(to_log, section='POSTPROCESS'):
 
 
 def db(to_log, section='DB'):
-    # log(to_log, DB, section)
+    log(to_log, DB, section)
 
 
 def log_error_and_exit(error_msg):
