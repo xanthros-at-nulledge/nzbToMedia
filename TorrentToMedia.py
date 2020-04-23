@@ -18,7 +18,7 @@ eol.check()
 cleanup.clean(cleanup.FOLDER_STRUCTURE)
 
 import core
-from core import logger, main_db
+from core import logger
 from core.auto_process import comics, games, movies, music, tv, books
 from core.auto_process.common import ProcessResult
 from core.plugins.plex import plex_update
@@ -39,8 +39,7 @@ def process_torrent(input_directory, input_name, input_category, input_hash, inp
     if client_agent != 'manual' and not core.DOWNLOAD_INFO:
         logger.debug('Adding TORRENT download info for directory {0} to database'.format(input_directory))
 
-        my_db = main_db.DBConnection()
-
+        
         input_directory1 = input_directory
         input_name1 = input_name
 
@@ -58,8 +57,7 @@ def process_torrent(input_directory, input_name, input_category, input_hash, inp
             'client_agent': text_type(client_agent),
             'status': 0,
             'last_update': datetime.date.today().toordinal(),
-        }
-        my_db.upsert('downloads', new_value_dict, control_value_dict)
+        }        
 
     logger.debug('Received Directory: {0} | Name: {1} | Category: {2}'.format(input_directory, input_name, input_category))
 

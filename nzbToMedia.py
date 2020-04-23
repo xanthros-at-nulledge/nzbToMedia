@@ -728,7 +728,7 @@ eol.check()
 cleanup.clean(cleanup.FOLDER_STRUCTURE)
 
 import core
-from core import logger, main_db
+from core import logger
 from core.auto_process import comics, games, movies, music, tv, books
 from core.auto_process.common import ProcessResult
 from core.plugins.downloaders.nzb.utils import get_nzoid
@@ -763,7 +763,7 @@ def process(input_directory, input_name=None, status=0, client_agent='manual', d
     if client_agent != 'manual' and not core.DOWNLOAD_INFO:
         logger.debug('Adding NZB download info for directory {0} to database'.format(input_directory))
 
-        my_db = main_db.DBConnection()
+        
 
         input_directory1 = input_directory
         input_name1 = input_name
@@ -782,8 +782,7 @@ def process(input_directory, input_name=None, status=0, client_agent='manual', d
             'client_agent': text_type(client_agent),
             'status': 0,
             'last_update': datetime.date.today().toordinal(),
-        }
-        my_db.upsert('downloads', new_value_dict, control_value_dict)
+        }        
 
     # auto-detect section
     if input_category is None:

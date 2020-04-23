@@ -49,7 +49,7 @@ MYAPP = None
 import six
 from six.moves import reload_module
 
-from core import logger, main_db, version_check, databases, transcoder
+from core import logger, version_check, transcoder
 from core.configuration import config
 from core.plugins.downloaders.configuration import (
     configure_nzbs,
@@ -1027,8 +1027,6 @@ def initialize(section=None):
     # check python version
     check_python()
 
-    # initialize the main SB database
-    main_db.upgrade_database(main_db.DBConnection(), databases.InitialSchema)
 
     configure_general()
     configure_updates()
